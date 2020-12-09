@@ -73,19 +73,25 @@ let songIndex = 0;
 
 // Previous Song
 function prevSong() {
-    songIndex--;
-    if (songIndex < 0) {
-        songIndex = songs.length - 1;
-    }
-    loadSong(songs[songIndex]);
-    playSong();
+    nextOrPrevSong(false);
 }
 
 // Next Song
 function nextSong() {
-    songIndex++;
-    if (songIndex > songs.length - 1) {
-        songIndex = 0;
+    nextOrPrevSong(true);
+}
+
+function nextOrPrevSong(np) {
+    if (np) {
+        songIndex++;
+        if (songIndex > songs.length - 1) {
+            songIndex = 0;
+        }
+    } else {
+        songIndex--;
+        if (songIndex < 0) {
+            songIndex = songs.length - 1;
+        }
     }
     loadSong(songs[songIndex]);
     playSong();
